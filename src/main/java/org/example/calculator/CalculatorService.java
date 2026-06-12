@@ -65,14 +65,18 @@ public class CalculatorService {
 
     // Low severity: Insecure HTTP client
     public String insecureHttpGet(String url) throws Exception {
-        org.apache.http.client.HttpClient client = new org.apache.http.impl.client.DefaultHttpClient();
-        org.apache.http.client.methods.HttpGet request = new org.apache.http.client.methods.HttpGet(url);
-        org.apache.http.HttpResponse response = client.execute(request);
-        java.io.InputStream is = response.getEntity().getContent();
-        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-        String result = s.hasNext() ? s.next() : "";
-        s.close();
-        return result;
+        try (org.apache.hc.client5.http.impl.classic.CloseableHttpClient client = 
+             org.apache.hc.client5.http.impl.classic.HttpClients.createDefault()) {
+            org.apache.hc.client5.http.classic.methods.HttpGet request = 
+                new org.apache.hc.client5.http.classic.methods.HttpGet(url);
+            return client.execute(request, response -> {
+                java.io.InputStream is = response.getEntity().getContent();
+                java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+                String result = s.hasNext() ? s.next() : "";
+                s.close();
+                return result;
+            });
+        }
     }
 
     // High severity: Hardcoded credentials
