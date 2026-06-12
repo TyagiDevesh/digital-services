@@ -37,7 +37,7 @@ public class CalculatorService {
 
     // Low severity: Deprecated API usage
     public String deprecatedBase64Encode(String input) {
-        return new sun.misc.BASE64Encoder().encode(input.getBytes());
+        return java.util.Base64.getEncoder().encodeToString(input.getBytes());
     }
 
     // High severity: SQL injection
@@ -134,7 +134,8 @@ public class CalculatorService {
 
     // Low severity: Deprecated thread method
     public void deprecatedThreadStop(Thread t) {
-        t.stop(); // Deprecated and unsafe
+        // t.stop() is deprecated - using interrupt instead as alternative
+        t.interrupt();
     }
 
     // High severity: Remote code execution
