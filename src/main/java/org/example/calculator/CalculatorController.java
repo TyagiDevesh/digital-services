@@ -50,7 +50,7 @@ public class CalculatorController {
     }
 
     @GetMapping("/redirect")
-    public void redirect(@RequestParam String url, javax.servlet.http.HttpServletResponse response) throws java.io.IOException {
+    public void redirect(@RequestParam String url, jakarta.servlet.http.HttpServletResponse response) throws java.io.IOException {
         // Medium severity: Open redirect
         response.sendRedirect(url);
     }
