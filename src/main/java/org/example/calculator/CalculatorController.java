@@ -1,7 +1,7 @@
 package org.example.calculator;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
 @RequestMapping("/api/calculator")
@@ -99,16 +99,5 @@ public class CalculatorController {
         System.setProperty("GREETING", greeting);
         // Direct reflection (potential XSS)
         return greeting + " hello";
-    }
-}
-package org.example.calculator;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class CalculatorApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(CalculatorApplication.class, args);
     }
 }
