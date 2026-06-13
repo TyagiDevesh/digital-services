@@ -16,6 +16,7 @@
         <sonar.projectKey>TyagiDevesh_digital-services</sonar.projectKey>
         <sonar.organization>tyagidevesh</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.projectName>digital-services</sonar.projectName>
     </properties>
 
     <dependencies>
